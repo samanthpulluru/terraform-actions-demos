@@ -3,8 +3,8 @@ provider "aws" {
 }
 
 resource "aws_security_group" "vars_demo" {
-  name = "demo-variables-${var.elb_names[count.index]}"
   count = var.istest == true ? 1 : 3
+  name = "demo-variables-${var.elb_names[count.index]}"
   ingress {
     from_port        = 443
     to_port          = 443
