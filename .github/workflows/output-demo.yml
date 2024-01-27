@@ -1,4 +1,4 @@
-name: Output demo
+name: Terraform Demo
 
 on:
   workflow_dispatch:
