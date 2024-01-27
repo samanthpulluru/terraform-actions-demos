@@ -5,7 +5,7 @@ provider "aws" {
 
 resource "aws_security_group" "vars_demo" {
   name = "demo-variables-${var.elb_names[count.index]}"
-  count = 5
+  count = 3
   ingress {
     from_port        = 443
     to_port          = 443
