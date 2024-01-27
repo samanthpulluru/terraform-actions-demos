@@ -1,0 +1,19 @@
+name: Destroy Infra created after TF demo
+
+on: 
+  workflow_dispatch:
+    inputs:
+      folder-name:
+        description: 'Enter target folder resources to destroy'
+        required: true
+
+jobs:
+  tf-destroy:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: "./dev/${{ github.event.inputs.folder-name }}"
+    steps:
+    - name: TF Destroy
+      run: ls -lrta
+      working-directory: ${{ env.working-diretory }}
+        
