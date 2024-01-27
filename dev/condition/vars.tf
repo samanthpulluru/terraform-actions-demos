@@ -8,5 +8,5 @@ variable "elb_names" {
 }
 
 variable "istest" {
-  default = "true"
+  default = true
 }
