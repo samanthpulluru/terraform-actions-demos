@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Enter the target env'
+        description: 'Enter the target folder'
         required: true
         default: 'dev'
         
