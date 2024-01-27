@@ -28,6 +28,9 @@ jobs:
 
     - name: TF Plan
       id: plan
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: terraform plan
       working-directory: ${{ env.working-directory }}
 
@@ -35,5 +38,9 @@ jobs:
       if: steps.plan.outcome == 'failure'
       run: exit 1
 
-    - run: TF Apply
+    - name: TF Apply
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: terraform apply -auto-approve
+      working-directory: ${{ env.working-directory }}
