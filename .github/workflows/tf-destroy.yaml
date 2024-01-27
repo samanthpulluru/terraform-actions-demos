@@ -21,10 +21,20 @@ jobs:
       working-directory: "./dev/${{ env.working-directory }}"
 
     - name: TF Plan
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform plan
+      working-directory: ${{ env.working-directory }}
       run: terraform plan
       working-directory: "./dev/${{ env.working-directory }}"
       
     - name: TF Destroy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform plan
+      working-directory: ${{ env.working-directory }}
       run: terraform destroy --auto-approve
       working-directory: "./dev/${{ env.working-directory }}"
     
