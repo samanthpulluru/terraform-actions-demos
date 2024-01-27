@@ -1,0 +1,44 @@
+name: Output demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      directory:
+        description: 'Enter a folder'
+        required: true
+
+jobs:
+  output-demo:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ${{ github.event.inputs.directory }}
+    steps:
+    - name: Code checkout
+      uses: actions/checkout@v4.1.1
+
+    - name: TF format
+      run: terraform format
+      working-directory: ./dev/${{ env.working-directory }}
+
+    - name: TF init
+      run: terraform init
+      working-directory: ./dev/${{ env.working-directory }}
+
+    - name: TF Plan
+      id: plan
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform plan
+      working-directory: ./dev/${{ env.working-directory }}
+
+    - name: TF Plan validate
+      if: steps.plan.outcome == 'failure'
+      run: exit 1
+
+    - name: TF Apply
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform apply -auto-approve
+      working-directory: ./dev/${{ env.working-directory }}
