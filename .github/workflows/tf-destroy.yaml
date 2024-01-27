@@ -18,13 +18,13 @@ jobs:
 
     - name: TF init
       run: terraform init
-      working-directory: "./dev/${{ env.working-diretory }}"
+      working-directory: "./dev/${{ env.working-directory }}"
 
     - name: TF Plan
       run: terraform plan
-      working-directory: "./dev/${{ env.working-diretory }}"
+      working-directory: "./dev/${{ env.working-directory }}"
       
     - name: TF Destroy
       run: terraform destroy --auto-approve
-      working-directory: "./dev/${{ env.working-diretory }}"
+      working-directory: "./dev/${{ env.working-directory }}"
     
