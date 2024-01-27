@@ -1,0 +1,39 @@
+name: Create EC2 instance
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Enter the target env'
+        required: true
+        default: 'dev'
+        
+jobs:
+  deploy-ec2:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ${{ github.event.inputs.environment }}
+      
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.1
+
+    - name: TF Format
+      run: terraform fmt
+      working-directory: ${{ env.working-directory }}
+
+    - name: TF Init
+      run: terraform init
+      working-directory: ${{ env.working-directory }}
+
+    - name: TF Plan
+      id: plan
+      run: terraform plan
+      working-directory: ${{ env.working-directory }}
+
+    - name: TF Plan status
+      if: steps.plan.outcome == 'failure'
+      run: exit 1
+
+    - run: TF Apply
+      run: terraform apply -auto-approve
