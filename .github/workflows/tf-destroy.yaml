@@ -15,6 +15,12 @@ jobs:
     steps:
     - name: Code checkout
       uses: actions/checkout@v4.1.1
+
+    - name: TF init
+      run: terraform init
+
+    - name: TF Plan
+      run: terraform plan
       
     - name: TF Destroy
       run: terraform destroy --auto-approve
