@@ -8,7 +8,7 @@ on:
         required: true
 
 jobs:
-  output-demo:
+  tf-demo:
     runs-on: ubuntu-latest
     env:
       working-directory: ${{ github.event.inputs.directory }}
