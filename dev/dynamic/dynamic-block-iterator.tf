@@ -9,7 +9,7 @@ resource "aws_security_group" "dynamic-iterator-sg" {
   description = "SG for dynamic iterator group"
 
   dynamic "ingress" {
-    for_each = vars.sg_port_iterator
+    for_each = var.sg_port_iterator
     iterator = port
     content {
       from = port.value
