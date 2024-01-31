@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
 variable "sg_port" {
   type = list(number)
   description = "List of ingress ports"
