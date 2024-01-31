@@ -12,8 +12,8 @@ resource "aws_security_group" "dynamic-iterator-sg" {
     for_each = var.sg_port_iterator
     iterator = port
     content {
-      from = port.value
-      to = port.value
+      from_port = port.value
+      to_port = port.value
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     }
