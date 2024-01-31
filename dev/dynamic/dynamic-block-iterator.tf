@@ -1,5 +1,4 @@
-variable "sg_port_iterator"
-{
+variable "sg_port_iterator" {
   type = list(number)
   description = "Variable container for ports"
   default = [8300, 8301, 8200, 9500]
