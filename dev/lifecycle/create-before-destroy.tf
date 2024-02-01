@@ -8,4 +8,5 @@ resource "aws_instance" "myec2" {
 
   lifecycle {
     create_before_destroy = true
+  }
 }
