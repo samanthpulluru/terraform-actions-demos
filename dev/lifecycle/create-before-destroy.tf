@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "myec2" {
-  ami = "ami-0277155c3f0ab2930"
+  ami = "ami-0cf10cdf9fcd62d37"
   instance_type = "t2.micro"
 
   lifecycle {
